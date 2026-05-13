@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(python tests/test_react.py)",
+      "Bash(python -m deep_research react --help)",
+      "Bash(python tests/test_mcp.py)",
+      "Bash(git --version)"
+    ]
+  }
+}

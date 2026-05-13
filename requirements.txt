@@ -1,0 +1,21 @@
+# Deep Research Agent 依赖
+
+# LLM 客户端
+openai>=1.0.0
+
+# HTTP 请求
+requests>=2.28.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# 类型提示（Python 3.9+ 可选）
+typing-extensions>=4.0.0
+
+# MCP (Model Context Protocol) — 标准化外部工具集成
+mcp>=1.0.0
+
+# FastAPI 服务
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
