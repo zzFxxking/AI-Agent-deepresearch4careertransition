@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI求职助手 - 历史记录</title>
+    <style id="theme-vars">
+/* === 暖橙活力风 — Warm Energetic === */
+:root {
+  /* Brand Colors */
+  --color-primary: #c2410c;
+  --color-primary-light: #ea580c;
+  --color-primary-dark: #9a3412;
+  --color-primary-bg: #fff7ed;
+  --color-primary-subtle: #ffedd5;
+
+  /* Surfaces */
+  --color-bg: #fffbf5;
+  --color-bg-alt: #fef3e2;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fffbf5;
+  --color-border: #f5dbb8;
+  --color-border-light: #fcebd3;
+
+  /* Text */
+  --color-text: #1c1410;
+  --color-text-secondary: #78350f;
+  --color-text-muted: #b08968;
+  --color-text-inverse: #ffffff;
+
+  /* State Colors */
+  --state-success: #15803d;
+  --state-warning: #b45309;
+  --state-error: #b91c1c;
+  --state-info: #0369a1;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(194,65,12,0.04);
+  --shadow-md: 0 4px 12px rgba(194,65,12,0.06);
+  --shadow-lg: 0 8px 24px rgba(194,65,12,0.08);
+  --shadow-xl: 0 16px 48px rgba(194,65,12,0.1);
+}
+
+.dark {
+  --color-bg: #1a1008;
+  --color-bg-alt: #241810;
+  --color-surface: #2e1f14;
+  --color-surface-hover: #3a2818;
+  --color-border: #443020;
+  --color-border-light: #382618;
+  --color-text: #fef3e2;
+  --color-text-secondary: #d4a574;
+  --color-text-muted: #8b6040;
+  --color-primary-bg: #2a1508;
+  --color-primary-subtle: #3d2010;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="../assets/common.css">
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-primary: var(--color-primary);
+    --color-border: var(--color-border);
+  }
+  @layer base {
+    body { background: var(--color-surface); color: var(--color-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans);">
+    <!-- 顶部导航 -->
+    <nav class="animate-fade-in" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: var(--color-bg); border-bottom: 1px solid var(--color-border-light);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between;">
+        <a href="index-warm-energetic.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--color-text);">
+          <span style="width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--color-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <i data-lucide="briefcase" style="width: 18px; height: 18px; color: var(--color-text-inverse);"></i>
+          </span>
+          <span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap;">AI求职助手</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 32px;">
+          <div class="nav-links hide-mobile" style="display: flex; align-items: center; gap: 28px;">
+            <a href="index-warm-energetic.html" style="font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-secondary)'">首页</a>
+            <a href="input.html" style="font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-secondary)'">新生成</a>
+            <a href="settings.html" style="font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-secondary)'">设置</a>
+          </div>
+          <a href="input.html" data-dom-id="nav-new-report" class="btn-press hide-mobile" style="display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; background: var(--color-primary); color: var(--color-text-inverse); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 150ms cubic-bezier(.2,.8,.2,1), transform 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.background='var(--color-primary-light)'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-primary)'; this.style.transform='translateY(0)'" onmousedown="this.style.transform='translateY(0)'">
+            <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+            新生成
+          </a>
+          <button type="button" class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="打开菜单">
+            <i data-lucide="menu" style="width: 20px; height: 20px; color: var(--color-text);"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 移动端抽屉菜单 -->
+    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+        <span style="font-size: 18px; font-weight: 600; color: var(--color-text);">菜单</span>
+        <button type="button" onclick="toggleMobileMenu()" style="width: 36px; height: 36px; border-radius: var(--radius-md); border: none; background: var(--color-bg-alt); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <i data-lucide="x" style="width: 18px; height: 18px; color: var(--color-text);"></i>
+        </button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px; flex: 1;">
+        <a href="index-warm-energetic.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: background 150ms, color 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)'" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)'">
+          <i data-lucide="home" style="width: 18px; height: 18px;"></i>首页
+        </a>
+        <a href="input.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: background 150ms, color 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)'" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)'">
+          <i data-lucide="plus-circle" style="width: 18px; height: 18px;"></i>新生成
+        </a>
+        <a href="history.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); font-size: 15px; color: var(--color-primary); background: var(--color-primary-subtle); text-decoration: none; font-weight: 600;">
+          <i data-lucide="history" style="width: 18px; height: 18px;"></i>历史记录
+        </a>
+        <a href="settings.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: background 150ms, color 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)'" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)'">
+          <i data-lucide="settings" style="width: 18px; height: 18px;"></i>设置
+        </a>
+      </div>
+      <a href="input.html" class="btn-press" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; background: var(--color-primary); color: var(--color-text-inverse); border-radius: var(--radius-md); font-size: 15px; font-weight: 600; text-decoration: none; margin-top: 16px;">
+        <i data-lucide="plus" style="width: 16px; height: 16px;"></i>开始生成
+      </a>
+    </div>
+
+    <main class="mobile-px-4" style="padding-top: 68px; min-height: calc(100vh - 68px);">
+      <!-- 页面头部 -->
+      <section class="animate-fade-in-up" style="padding: 40px 0 24px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+            <div style="min-width: 0; flex: 1;">
+              <h1 style="font-size: clamp(28px, 3.2vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; color: var(--color-text); margin: 0 0 8px 0; text-wrap: balance; word-break: keep-all;">历史记录</h1>
+              <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin: 0;">查看你之前生成的所有求职准备报告</p>
+            </div>
+            <div style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap;">
+              <i data-lucide="file-text" style="width: 16px; height: 16px; color: var(--color-primary);"></i>
+              <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">共 5 份报告</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 搜索和筛选栏 -->
+      <section class="animate-fade-in-up delay-100" style="padding-bottom: 24px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+          <div class="history-filters" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <!-- 搜索框 -->
+            <div style="position: relative; flex: 1; min-width: 240px;">
+              <i data-lucide="search" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--color-text-muted); pointer-events: none;"></i>
+              <input type="text" placeholder="搜索岗位名称或关键词..." style="width: 100%; height: 44px; padding: 0 16px 0 42px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text); font-family: var(--font-sans); outline: none; transition: border-color 150ms cubic-bezier(.2,.8,.2,1), box-shadow 150ms cubic-bezier(.2,.8,.2,1); box-sizing: border-box;" onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)'" onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'">
+            </div>
+            <!-- 筛选: 岗位类型 -->
+            <div style="position: relative; flex-shrink: 0;">
+              <select style="height: 44px; padding: 0 36px 0 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text); font-family: var(--font-sans); outline: none; appearance: none; cursor: pointer; transition: border-color 150ms cubic-bezier(.2,.8,.2,1); -webkit-appearance: none; background-image: none;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'">
+                <option value="">全部岗位</option>
+                <option value="llm-algo">大模型算法</option>
+                <option value="llm-app">大模型应用</option>
+                <option value="ai-product">AI产品</option>
+                <option value="other">其他</option>
+              </select>
+              <i data-lucide="chevron-down" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--color-text-muted); pointer-events: none;"></i>
+            </div>
+            <!-- 筛选: 排序 -->
+            <div style="position: relative; flex-shrink: 0;">
+              <select style="height: 44px; padding: 0 36px 0 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text); font-family: var(--font-sans); outline: none; appearance: none; cursor: pointer; transition: border-color 150ms cubic-bezier(.2,.8,.2,1); -webkit-appearance: none; background-image: none;" onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-border)'">
+                <option value="latest">最新优先</option>
+                <option value="score">评分最高</option>
+              </select>
+              <i data-lucide="chevron-down" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--color-text-muted); pointer-events: none;"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 记录列表 -->
+      <section style="padding-bottom: 40px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+
+            <!-- 记录 1 -->
+            <a href="#" data-dom-id="record-item-1" class="card-hover animate-fade-in-up delay-100 history-item" style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; cursor: pointer; transition: border-color 160ms cubic-bezier(.2,.8,.2,1), transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 160ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onmousedown="this.style.transform='translateY(0)'">
+              <!-- 左侧图标 -->
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-primary-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--color-primary);"></i>
+              </div>
+              <!-- 中左: 标题和标签 -->
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 600; color: var(--color-text); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">大模型应用开发工程师</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; background: rgba(21,128,61,0.08); border-radius: var(--radius-full); white-space: nowrap; flex-shrink: 0;">
+                    <i data-lucide="check-circle-2" style="width: 13px; height: 13px; color: var(--state-success);"></i>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--state-success);">已完成</span>
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">RAG</span>
+                  </span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">Agent</span>
+                  </span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">MCP</span>
+                  </span>
+                </div>
+              </div>
+              <!-- 中右: 元信息 -->
+              <div class="history-item-meta" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; margin-left: auto;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">2026年7月3日 14:23</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">准备时间 3个月</span>
+                </div>
+              </div>
+              <!-- 右侧: 评分 + 箭头 -->
+              <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: 8px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap;">
+                  <i data-lucide="star" style="width: 14px; height: 14px; color: var(--color-primary); fill: var(--color-primary);"></i>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">92分</span>
+                </div>
+                <i data-lucide="chevron-right" style="width: 20px; height: 20px; color: var(--color-text-muted); flex-shrink: 0; transition: transform 160ms cubic-bezier(.2,.8,.2,1), color 160ms cubic-bezier(.2,.8,.2,1);" class="record-arrow"></i>
+              </div>
+            </a>
+
+            <!-- 记录 2 -->
+            <a href="workbench.html" class="card-hover animate-fade-in-up delay-200 history-item" style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; cursor: pointer; transition: border-color 160ms cubic-bezier(.2,.8,.2,1), transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 160ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onmousedown="this.style.transform='translateY(0)'">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-primary-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--color-primary);"></i>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 600; color: var(--color-text); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">大模型算法工程师</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; background: rgba(21,128,61,0.08); border-radius: var(--radius-full); white-space: nowrap; flex-shrink: 0;">
+                    <i data-lucide="check-circle-2" style="width: 13px; height: 13px; color: var(--state-success);"></i>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--state-success);">已完成</span>
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">微调训练</span>
+                  </span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">推理优化</span>
+                  </span>
+                </div>
+              </div>
+              <div class="history-item-meta" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; margin-left: auto;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">2026年6月28日 09:15</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">准备时间 6个月</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: 8px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap;">
+                  <i data-lucide="star" style="width: 14px; height: 14px; color: var(--color-primary); fill: var(--color-primary);"></i>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">88分</span>
+                </div>
+                <i data-lucide="chevron-right" style="width: 20px; height: 20px; color: var(--color-text-muted); flex-shrink: 0;"></i>
+              </div>
+            </a>
+
+            <!-- 记录 3 -->
+            <a href="workbench.html" class="card-hover animate-fade-in-up delay-300 history-item" style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; cursor: pointer; transition: border-color 160ms cubic-bezier(.2,.8,.2,1), transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 160ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onmousedown="this.style.transform='translateY(0)'">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-primary-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--color-primary);"></i>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 600; color: var(--color-text); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AI产品经理</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; background: rgba(21,128,61,0.08); border-radius: var(--radius-full); white-space: nowrap; flex-shrink: 0;">
+                    <i data-lucide="check-circle-2" style="width: 13px; height: 13px; color: var(--state-success);"></i>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--state-success);">已完成</span>
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">Prompt工程</span>
+                  </span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">RAG</span>
+                  </span>
+                </div>
+              </div>
+              <div class="history-item-meta" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; margin-left: auto;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">2026年6月20日 16:42</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">准备时间 2个月</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: 8px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap;">
+                  <i data-lucide="star" style="width: 14px; height: 14px; color: var(--color-primary); fill: var(--color-primary);"></i>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">85分</span>
+                </div>
+                <i data-lucide="chevron-right" style="width: 20px; height: 20px; color: var(--color-text-muted); flex-shrink: 0;"></i>
+              </div>
+            </a>
+
+            <!-- 记录 4 -->
+            <a href="workbench.html" class="card-hover animate-fade-in-up delay-400 history-item" style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; cursor: pointer; transition: border-color 160ms cubic-bezier(.2,.8,.2,1), transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 160ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onmousedown="this.style.transform='translateY(0)'">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-primary-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--color-primary);"></i>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 600; color: var(--color-text); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">机器学习工程师</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; background: rgba(21,128,61,0.08); border-radius: var(--radius-full); white-space: nowrap; flex-shrink: 0;">
+                    <i data-lucide="check-circle-2" style="width: 13px; height: 13px; color: var(--state-success);"></i>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--state-success);">已完成</span>
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">传统ML</span>
+                  </span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">深度学习</span>
+                  </span>
+                </div>
+              </div>
+              <div class="history-item-meta" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; margin-left: auto;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">2026年6月15日 11:08</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">准备时间 3个月</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: 8px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap;">
+                  <i data-lucide="star" style="width: 14px; height: 14px; color: var(--color-primary); fill: var(--color-primary);"></i>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">79分</span>
+                </div>
+                <i data-lucide="chevron-right" style="width: 20px; height: 20px; color: var(--color-text-muted); flex-shrink: 0;"></i>
+              </div>
+            </a>
+
+            <!-- 记录 5 -->
+            <a href="workbench.html" class="card-hover animate-fade-in-up delay-500 history-item" style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; cursor: pointer; transition: border-color 160ms cubic-bezier(.2,.8,.2,1), transform 160ms cubic-bezier(.2,.8,.2,1), box-shadow 160ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'" onmousedown="this.style.transform='translateY(0)'">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-primary-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--color-primary);"></i>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 16px; font-weight: 600; color: var(--color-text); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">大模型推理优化</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; background: rgba(21,128,61,0.08); border-radius: var(--radius-full); white-space: nowrap; flex-shrink: 0;">
+                    <i data-lucide="check-circle-2" style="width: 13px; height: 13px; color: var(--state-success);"></i>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--state-success);">已完成</span>
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">推理优化</span>
+                  </span>
+                  <span style="display: inline-flex; align-items: center; padding: 2px 10px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap; height: 22px;">
+                    <span style="font-size: 12px; font-weight: 500; color: var(--color-primary);">TensorRT</span>
+                  </span>
+                </div>
+              </div>
+              <div class="history-item-meta" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; margin-left: auto;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">2026年6月10日 20:33</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--color-text-muted);"></i>
+                  <span style="font-size: 13px; color: var(--color-text-muted); white-space: nowrap;">准备时间 1个月</span>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: 8px;">
+                <div style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; background: var(--color-primary-subtle); border-radius: var(--radius-full); white-space: nowrap;">
+                  <i data-lucide="star" style="width: 14px; height: 14px; color: var(--color-primary); fill: var(--color-primary);"></i>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">90分</span>
+                </div>
+                <i data-lucide="chevron-right" style="width: 20px; height: 20px; color: var(--color-text-muted); flex-shrink: 0;"></i>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- 空状态（默认隐藏） -->
+          <div id="empty-state" style="display: none; text-align: center; padding: 60px 20px;">
+            <img src="../assets/empty-state.jpg" alt="暂无记录" style="width: 160px; height: 160px; object-fit: contain; margin-bottom: 24px; border-radius: var(--radius-lg); opacity: 0.8;">
+            <h3 style="font-size: 20px; font-weight: 600; color: var(--color-text); margin: 0 0 8px 0;">还没有生成记录</h3>
+            <p style="font-size: 15px; color: var(--color-text-secondary); margin: 0 0 24px 0;">描述你的求职需求，开始第一份报告</p>
+            <a href="input.html" class="btn-press" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--color-primary); color: var(--color-text-inverse); border-radius: var(--radius-md); font-size: 15px; font-weight: 600; text-decoration: none;">
+              <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+              开始生成
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 分页 -->
+      <section class="animate-fade-in delay-500" style="padding-bottom: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+          <div class="pagination-wrap" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <button style="display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text-secondary); font-family: var(--font-sans); cursor: pointer; transition: border-color 150ms cubic-bezier(.2,.8,.2,1), color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-secondary)'">
+              <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+              上一页
+            </button>
+            <div style="display: flex; align-items: center; gap: 4px; margin: 0 8px;">
+              <button style="width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-primary); border: 1px solid var(--color-primary); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; color: var(--color-text-inverse); font-family: var(--font-sans); cursor: default; white-space: nowrap;">1</button>
+              <button style="width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text-secondary); font-family: var(--font-sans); cursor: pointer; transition: border-color 150ms cubic-bezier(.2,.8,.2,1), color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-secondary)'">2</button>
+              <button style="width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text-secondary); font-family: var(--font-sans); cursor: pointer; transition: border-color 150ms cubic-bezier(.2,.8,.2,1), color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-secondary)'">3</button>
+            </div>
+            <button style="display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: 14px; color: var(--color-text-secondary); font-family: var(--font-sans); cursor: pointer; transition: border-color 150ms cubic-bezier(.2,.8,.2,1), color 150ms cubic-bezier(.2,.8,.2,1); white-space: nowrap;" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-secondary)'">
+              下一页
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer style="padding: 32px 0; border-top: 1px solid var(--color-border-light); background: var(--color-bg);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--color-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <i data-lucide="briefcase" style="width: 14px; height: 14px; color: var(--color-text-inverse);"></i>
+          </span>
+          <span style="font-size: 14px; font-weight: 500; color: var(--color-text); white-space: nowrap;">AI求职助手</span>
+        </div>
+        <p style="font-size: 13px; color: var(--color-text-muted); margin: 0;">
+          © 2026 AI求职助手. 为AI/大模型求职者打造.
+        </p>
+      </div>
+    </footer>
+
+    <style>
+      /* Pagination horizontal scroll on mobile */
+      @media (max-width: 767px) {
+        .pagination-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .pagination-wrap > div { justify-content: flex-start; min-width: max-content; }
+      }
+      @media (max-width: 639px) {
+        .record-arrow { display: none !important; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
+      select {
+        background-image: none !important;
+      }
+    </style>
+    <script>
+      function toggleMobileMenu() {
+        var drawer = document.getElementById('mobileDrawer');
+        var overlay = document.getElementById('mobileDrawerOverlay');
+        drawer.classList.toggle('open');
+        overlay.classList.toggle('open');
+        document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+      }
+      lucide.createIcons();
+    </script>
+</body>
+</html>

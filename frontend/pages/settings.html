@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI求职助手 - 设置</title>
+    <style id="theme-vars">
+/* === 暖橙活力风 — Warm Energetic === */
+:root {
+  /* Brand Colors */
+  --color-primary: #c2410c;
+  --color-primary-light: #ea580c;
+  --color-primary-dark: #9a3412;
+  --color-primary-bg: #fff7ed;
+  --color-primary-subtle: #ffedd5;
+
+  /* Surfaces */
+  --color-bg: #fffbf5;
+  --color-bg-alt: #fef3e2;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fffbf5;
+  --color-border: #f5dbb8;
+  --color-border-light: #fcebd3;
+
+  /* Text */
+  --color-text: #1c1410;
+  --color-text-secondary: #78350f;
+  --color-text-muted: #b08968;
+  --color-text-inverse: #ffffff;
+
+  /* State Colors */
+  --state-success: #15803d;
+  --state-warning: #b45309;
+  --state-error: #b91c1c;
+  --state-info: #0369a1;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(194,65,12,0.04);
+  --shadow-md: 0 4px 12px rgba(194,65,12,0.06);
+  --shadow-lg: 0 8px 24px rgba(194,65,12,0.08);
+  --shadow-xl: 0 16px 48px rgba(194,65,12,0.1);
+}
+
+.dark {
+  --color-bg: #1a1008;
+  --color-bg-alt: #241810;
+  --color-surface: #2e1f14;
+  --color-surface-hover: #3a2818;
+  --color-border: #443020;
+  --color-border-light: #382618;
+  --color-text: #fef3e2;
+  --color-text-secondary: #d4a574;
+  --color-text-muted: #8b6040;
+  --color-primary-bg: #2a1508;
+  --color-primary-subtle: #3d2010;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="../assets/common.css">
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-primary: var(--color-primary);
+    --color-border: var(--color-border);
+  }
+  @layer base {
+    body { background: var(--color-surface); color: var(--color-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body style="min-height:100vh;font-family:var(--font-sans);background:var(--color-bg);color:var(--color-text);-webkit-font-smoothing:antialiased;">
+    <!-- Top Navigation -->
+    <nav class="animate-fade-in" style="position:sticky;top:0;z-index:50;width:100%;background:var(--color-bg);border-bottom:1px solid var(--color-border-light);">
+      <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;">
+        <a href="index-warm-energetic.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--color-text);">
+          <div style="width:32px;height:32px;border-radius:var(--radius-md);background:var(--color-primary);display:flex;align-items:center;justify-content:center;">
+            <i data-lucide="briefcase" style="width:18px;height:18px;color:var(--color-text-inverse);"></i>
+          </div>
+          <span style="font-size:18px;font-weight:600;letter-spacing:-0.01em;">AI求职助手</span>
+        </a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a href="index-warm-energetic.html" class="hide-mobile" style="padding:8px 16px;border-radius:var(--radius-md);font-size:14px;color:var(--color-text-secondary);text-decoration:none;transition:background 150ms cubic-bezier(.2,.8,.2,1),color 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)';" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)';">首页</a>
+          <a href="input.html" class="hide-mobile" style="padding:8px 16px;border-radius:var(--radius-md);font-size:14px;color:var(--color-text-secondary);text-decoration:none;transition:background 150ms cubic-bezier(.2,.8,.2,1),color 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)';" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)';">新生成</a>
+          <a href="history.html" class="hide-mobile" style="padding:8px 16px;border-radius:var(--radius-md);font-size:14px;color:var(--color-text-secondary);text-decoration:none;transition:background 150ms cubic-bezier(.2,.8,.2,1),color 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)';" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)';">历史记录</a>
+          <button type="button" class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="打开菜单">
+            <i data-lucide="menu" style="width:20px;height:20px;color:var(--color-text);"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 移动端抽屉菜单 -->
+    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <span style="font-size:18px;font-weight:600;color:var(--color-text);">菜单</span>
+        <button type="button" onclick="toggleMobileMenu()" style="width:36px;height:36px;border-radius:var(--radius-md);border:none;background:var(--color-bg-alt);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <i data-lucide="x" style="width:18px;height:18px;color:var(--color-text);"></i>
+        </button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;flex:1;">
+        <a href="index-warm-energetic.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-md);font-size:15px;color:var(--color-text-secondary);text-decoration:none;transition:background 150ms,color 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)'" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)'">
+          <i data-lucide="home" style="width:18px;height:18px;"></i>首页
+        </a>
+        <a href="input.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-md);font-size:15px;color:var(--color-text-secondary);text-decoration:none;transition:background 150ms,color 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)'" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)'">
+          <i data-lucide="plus-circle" style="width:18px;height:18px;"></i>新生成
+        </a>
+        <a href="history.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-md);font-size:15px;color:var(--color-text-secondary);text-decoration:none;transition:background 150ms,color 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';this.style.color='var(--color-primary)'" onmouseout="this.style.background='transparent';this.style.color='var(--color-text-secondary)'">
+          <i data-lucide="history" style="width:18px;height:18px;"></i>历史记录
+        </a>
+        <a href="settings.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-md);font-size:15px;color:var(--color-primary);background:var(--color-primary-subtle);text-decoration:none;font-weight:600;">
+          <i data-lucide="settings" style="width:18px;height:18px;"></i>设置
+        </a>
+      </div>
+      <a href="input.html" class="btn-press" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:15px;font-weight:600;text-decoration:none;margin-top:16px;">
+        <i data-lucide="plus" style="width:16px;height:16px;"></i>开始生成
+      </a>
+    </div>
+
+    <main class="mobile-px-4" style="max-width:720px;margin:0 auto;padding:40px 24px 120px;">
+      <!-- Page Header -->
+      <div class="animate-fade-in-up" style="margin-bottom:32px;">
+        <h1 style="font-size:32px;font-weight:700;line-height:1.2;letter-spacing:-0.02em;color:var(--color-text);margin:0 0 8px;text-wrap:balance;word-break:keep-all;">设置</h1>
+        <p style="font-size:15px;color:var(--color-text-secondary);margin:0;line-height:1.6;">管理你的偏好和账户配置</p>
+      </div>
+
+      <!-- Settings Sections -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <!-- Section 1: 基础资料 -->
+        <section class="card-hover animate-fade-in-up delay-100 settings-card" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i data-lucide="user" style="width:16px;height:16px;color:var(--color-primary);"></i>
+            </div>
+            <h2 style="font-size:16px;font-weight:600;color:var(--color-text);margin:0;">基础资料</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">昵称</label>
+              <input type="text" value="求职小伙伴" style="width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;color:var(--color-text);background:var(--color-surface);outline:none;transition:border-color 150ms cubic-bezier(.2,.8,.2,1),box-shadow 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)';" onblur="this.style.borderColor='var(--color-border)';this.style.boxShadow='none';">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div>
+                <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">学历</label>
+                <select style="width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;color:var(--color-text);background:var(--color-surface);outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2378350f%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>');background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;transition:border-color 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';" onblur="this.style.borderColor='var(--color-border)';">
+                  <option>本科</option>
+                  <option selected>硕士</option>
+                  <option>博士</option>
+                  <option>其他</option>
+                </select>
+              </div>
+              <div>
+                <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">城市</label>
+                <input type="text" placeholder="如：北京、上海、远程..." style="width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;color:var(--color-text);background:var(--color-surface);outline:none;transition:border-color 150ms cubic-bezier(.2,.8,.2,1),box-shadow 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)';" onblur="this.style.borderColor='var(--color-border)';this.style.boxShadow='none';">
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">专业方向</label>
+              <input type="text" value="数学（跨考计算机）" style="width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;color:var(--color-text);background:var(--color-surface);outline:none;transition:border-color 150ms cubic-bezier(.2,.8,.2,1),box-shadow 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)';" onblur="this.style.borderColor='var(--color-border)';this.style.boxShadow='none';">
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: 默认偏好 -->
+        <section class="card-hover animate-fade-in-up delay-200 settings-card" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i data-lucide="sliders-horizontal" style="width:16px;height:16px;color:var(--color-primary);"></i>
+            </div>
+            <h2 style="font-size:16px;font-weight:600;color:var(--color-text);margin:0;">默认偏好</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">目标岗位</label>
+              <input type="text" placeholder="你最常搜索的岗位" style="width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;color:var(--color-text);background:var(--color-surface);outline:none;transition:border-color 150ms cubic-bezier(.2,.8,.2,1),box-shadow 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)';" onblur="this.style.borderColor='var(--color-border)';this.style.boxShadow='none';">
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">准备时间</label>
+              <select style="width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;color:var(--color-text);background:var(--color-surface);outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2378350f%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22/></svg>');background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;transition:border-color 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';" onblur="this.style.borderColor='var(--color-border)';">
+                <option>1个月</option>
+                <option>2个月</option>
+                <option selected>3个月</option>
+                <option>6个月</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;font-weight:500;">目标公司</label>
+              <div class="chip-group" data-group="company" style="display:flex;flex-wrap:wrap;gap:8px;">
+                <button type="button" class="chip chip-active" data-value="大厂" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-primary);background:var(--color-primary);color:var(--color-text-inverse);transition:all 150ms cubic-bezier(.2,.8,.2,1);">大厂</button>
+                <button type="button" class="chip" data-value="中型" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">中型</button>
+                <button type="button" class="chip" data-value="创业" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">创业</button>
+                <button type="button" class="chip" data-value="外企" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">外企</button>
+                <button type="button" class="chip" data-value="不限" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">不限</button>
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;font-weight:500;">重点方向</label>
+              <div class="chip-group" data-group="focus" style="display:flex;flex-wrap:wrap;gap:8px;">
+                <button type="button" class="chip chip-active" data-value="RAG" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-primary);background:var(--color-primary);color:var(--color-text-inverse);transition:all 150ms cubic-bezier(.2,.8,.2,1);">RAG</button>
+                <button type="button" class="chip chip-active" data-value="Agent" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-primary);background:var(--color-primary);color:var(--color-text-inverse);transition:all 150ms cubic-bezier(.2,.8,.2,1);">Agent</button>
+                <button type="button" class="chip" data-value="MCP" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">MCP</button>
+                <button type="button" class="chip" data-value="微调" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-md);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">微调</button>
+                <button type="button" class="chip" data-value="推理" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-md);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">推理</button>
+                <button type="button" class="chip" data-value="Prompt" onclick="toggleChip(this)" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);">Prompt</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: API 配置 -->
+        <section class="card-hover animate-fade-in-up delay-300 settings-card" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i data-lucide="key" style="width:16px;height:16px;color:var(--color-primary);"></i>
+            </div>
+            <h2 style="font-size:16px;font-weight:600;color:var(--color-text);margin:0;">API配置</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;font-weight:500;">搜索API</label>
+              <div class="segmented" role="radiogroup" style="display:inline-flex;background:var(--color-bg-alt);border-radius:var(--radius-full);padding:4px;gap:2px;">
+                <button type="button" class="seg-btn seg-active" data-value="tavily" onclick="selectSeg(this)" role="radio" aria-checked="true" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:var(--color-primary);color:var(--color-text-inverse);transition:all 200ms cubic-bezier(.2,.8,.2,1);">Tavily(默认)</button>
+                <button type="button" class="seg-btn" data-value="bing" onclick="selectSeg(this)" role="radio" aria-checked="false" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);transition:all 200ms cubic-bezier(.2,.8,.2,1);">Bing Search</button>
+                <button type="button" class="seg-btn" data-value="serpapi" onclick="selectSeg(this)" role="radio" aria-checked="false" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);transition:all 200ms cubic-bezier(.2,.8,.2,1);">SerpAPI</button>
+                <button type="button" class="seg-btn" data-value="custom" onclick="selectSeg(this)" role="radio" aria-checked="false" style="padding:7px 16px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);transition:all 200ms cubic-bezier(.2,.8,.2,1);">自定义</button>
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:6px;font-weight:500;">API Key</label>
+              <div style="position:relative;">
+                <input id="apiKeyInput" type="password" placeholder="sk-xxxxxxxxxxxxxxxx" style="width:100%;box-sizing:border-box;padding:10px 72px 10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:var(--font-mono);color:var(--color-text);background:var(--color-surface);outline:none;transition:border-color 150ms cubic-bezier(.2,.8,.2,1),box-shadow 150ms cubic-bezier(.2,.8,.2,1);" onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)';" onblur="this.style.borderColor='var(--color-border)';this.style.boxShadow='none';">
+                <button type="button" id="toggleKeyBtn" onclick="toggleApiKey()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);padding:5px 10px;border:none;background:transparent;color:var(--color-primary);font-size:12px;font-family:inherit;font-weight:500;cursor:pointer;border-radius:var(--radius-sm);transition:background 150ms;" onmouseover="this.style.background='var(--color-primary-subtle)';" onmouseout="this.style.background='transparent';">显示</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
+                <p style="font-size:12px;color:var(--color-text-muted);margin:0;display:flex;align-items:center;gap:4px;">
+                  <i data-lucide="shield-check" style="width:13px;height:13px;"></i>
+                  API Key 仅存储在本地，不会上传到服务器
+                </p>
+                <button type="button" onclick="testConnection(this)" class="btn-press" style="padding:6px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:12px;font-family:inherit;font-weight:500;cursor:pointer;background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);white-space:nowrap;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.color='var(--color-primary)';" onmouseout="this.style.borderColor='var(--color-border)';this.style.color='var(--color-text-secondary)';">测试连接</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: 外观设置 -->
+        <section class="card-hover animate-fade-in-up delay-400 settings-card" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i data-lucide="palette" style="width:16px;height:16px;color:var(--color-primary);"></i>
+            </div>
+            <h2 style="font-size:16px;font-weight:600;color:var(--color-text);margin:0;">外观</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;font-weight:500;">主题模式</label>
+              <div class="segmented" role="radiogroup" style="display:inline-flex;background:var(--color-bg-alt);border-radius:var(--radius-full);padding:4px;gap:2px;">
+                <button type="button" class="seg-btn seg-active" data-value="light" onclick="selectSeg(this)" role="radio" aria-checked="true" style="padding:8px 20px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:var(--color-primary);color:var(--color-text-inverse);transition:all 200ms cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;gap:6px;">
+                  <i data-lucide="sun" style="width:14px;height:14px;"></i>亮色
+                </button>
+                <button type="button" class="seg-btn" data-value="dark" onclick="selectSeg(this)" role="radio" aria-checked="false" style="padding:8px 20px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);transition:all 200ms cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;gap:6px;">
+                  <i data-lucide="moon" style="width:14px;height:14px;"></i>暗色
+                </button>
+                <button type="button" class="seg-btn" data-value="system" onclick="selectSeg(this)" role="radio" aria-checked="false" style="padding:8px 20px;border-radius:var(--radius-full);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);transition:all 200ms cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;gap:6px;">
+                  <i data-lucide="monitor" style="width:14px;height:14px;"></i>跟随系统
+                </button>
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:8px;font-weight:500;">界面密度</label>
+              <div style="display:flex;gap:12px;">
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="radio-custom radio-checked" data-group="density" onclick="selectRadio(this)" style="width:18px;height:18px;border-radius:50%;border:2px solid var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 150ms;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:var(--color-primary);"></span>
+                  </span>
+                  <input type="radio" name="density" value="comfort" checked style="position:absolute;opacity:0;pointer-events:none;">
+                  舒适
+                </label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="radio-custom" data-group="density" onclick="selectRadio(this)" style="width:18px;height:18px;border-radius:50%;border:2px solid var(--color-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 150ms;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:transparent;transition:background 150ms;"></span>
+                  </span>
+                  <input type="radio" name="density" value="compact" style="position:absolute;opacity:0;pointer-events:none;">
+                  紧凑
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: 输出设置 -->
+        <section class="card-hover animate-fade-in-up delay-500 settings-card" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i data-lucide="file-down" style="width:16px;height:16px;color:var(--color-primary);"></i>
+            </div>
+            <h2 style="font-size:16px;font-weight:600;color:var(--color-text);margin:0;">输出</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;font-weight:500;">输出格式</label>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="checkbox-custom checkbox-checked" onclick="toggleCheckbox(this)" style="width:18px;height:18px;border-radius:var(--radius-sm);border:2px solid var(--color-primary);background:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 150ms;">
+                    <i data-lucide="check" style="width:12px;height:12px;color:var(--color-text-inverse);"></i>
+                  </span>
+                  <input type="checkbox" checked style="position:absolute;opacity:0;pointer-events:none;">
+                  Markdown
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="checkbox-custom" onclick="toggleCheckbox(this)" style="width:18px;height:18px;border-radius:var(--radius-sm);border:2px solid var(--color-border);background:var(--color-surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 150ms;">
+                    <i data-lucide="check" style="width:12px;height:12px;color:transparent;"></i>
+                  </span>
+                  <input type="checkbox" style="position:absolute;opacity:0;pointer-events:none;">
+                  JSON
+                </label>
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="checkbox-custom" onclick="toggleCheckbox(this)" style="width:18px;height:18px;border-radius:var(--radius-sm);border:2px solid var(--color-border);background:var(--color-surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 150ms;">
+                    <i data-lucide="check" style="width:12px;height:12px;color:transparent;"></i>
+                  </span>
+                  <input type="checkbox" style="position:absolute;opacity:0;pointer-events:none;">
+                  PDF
+                </label>
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:14px;color:var(--color-text-secondary);margin-bottom:10px;font-weight:500;">报告语言</label>
+              <div style="display:flex;gap:16px;">
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="radio-custom radio-checked" data-group="lang" onclick="selectRadio(this)" style="width:18px;height:18px;border-radius:50%;border:2px solid var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 150ms;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:var(--color-primary);"></span>
+                  </span>
+                  <input type="radio" name="lang" value="zh" checked style="position:absolute;opacity:0;pointer-events:none;">
+                  中文
+                </label>
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:var(--color-text);">
+                  <span class="radio-custom" data-group="lang" onclick="selectRadio(this)" style="width:18px;height:18px;border-radius:50%;border:2px solid var(--color-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 150ms;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:transparent;transition:background 150ms;"></span>
+                  </span>
+                  <input type="radio" name="lang" value="en" style="position:absolute;opacity:0;pointer-events:none;">
+                  English
+                </label>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:4px;">
+              <div>
+                <div style="font-size:14px;font-weight:500;color:var(--color-text);">自动保存历史</div>
+                <div style="font-size:12px;color:var(--color-text-muted);margin-top:2px;">生成的报告会自动保存到本地</div>
+              </div>
+              <div class="toggle toggle-on" onclick="toggleSwitch(this)" role="switch" aria-checked="true" tabindex="0" style="width:44px;height:24px;border-radius:var(--radius-full);background:var(--color-primary);position:relative;cursor:pointer;transition:background 200ms cubic-bezier(.2,.8,.2,1);flex-shrink:0;">
+                <span style="position:absolute;top:2px;left:22px;width:20px;height:20px;border-radius:50%;background:var(--color-text-inverse);box-shadow:0 1px 3px rgba(0,0,0,0.15);transition:all 0.2s cubic-bezier(.2,.8,.2,1);"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: 数据管理 -->
+        <section class="card-hover animate-fade-in-up delay-600 settings-card" style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <i data-lucide="database" style="width:16px;height:16px;color:var(--color-primary);"></i>
+            </div>
+            <h2 style="font-size:16px;font-weight:600;color:var(--color-text);margin:0;">数据</h2>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <button type="button" onclick="confirmAction('clear')" class="btn-press" style="padding:10px 18px;border:1px solid var(--state-error);border-radius:var(--radius-md);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;background:var(--color-surface);color:var(--state-error);transition:all 150ms cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;gap:6px;" onmouseover="this.style.background='rgba(185,28,28,0.06)';" onmouseout="this.style.background='var(--color-surface)';">
+                <i data-lucide="trash-2" style="width:14px;height:14px;"></i>清除历史记录
+              </button>
+              <button type="button" onclick="exportData()" class="btn-press" style="padding:10px 18px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:13px;font-family:inherit;font-weight:500;cursor:pointer;background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;gap:6px;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.color='var(--color-primary)';" onmouseout="this.style.borderColor='var(--color-border)';this.style.color='var(--color-text-secondary)';">
+                <i data-lucide="download" style="width:14px;height:14px;"></i>导出所有数据
+              </button>
+            </div>
+            <p style="font-size:12px;color:var(--color-text-muted);margin:4px 0 0;display:flex;align-items:center;gap:4px;">
+              <i data-lucide="info" style="width:13px;height:13px;"></i>
+              所有数据存储在本地浏览器中
+            </p>
+          </div>
+        </section>
+
+        <!-- Save success notice (hidden by default, shown after save) -->
+        <div id="saveNotice" style="display:none;align-items:center;gap:10px;padding:14px 18px;background:var(--color-primary-subtle);border:1px solid var(--color-border);border-radius:var(--radius-lg);">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--state-success);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="check" style="width:16px;height:16px;color:var(--color-text-inverse);"></i>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--color-text);">设置已保存</div>
+            <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">你的偏好配置已更新</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Save Bar -->
+    <div class="animate-fade-in-up delay-600" style="position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(255,251,245,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--color-border-light);">
+      <div style="max-width:720px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;" class="settings-actions">
+        <button type="button" onclick="resetDefaults()" class="btn-press" style="padding:10px 20px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:14px;font-family:inherit;font-weight:500;cursor:pointer;background:var(--color-surface);color:var(--color-text-secondary);transition:all 150ms cubic-bezier(.2,.8,.2,1);white-space:nowrap;" onmouseover="this.style.borderColor='var(--color-text-muted)';this.style.color='var(--color-text)';" onmouseout="this.style.borderColor='var(--color-border)';this.style.color='var(--color-text-secondary)';">恢复默认</button>
+        <button type="button" id="saveBtn" onclick="saveSettings()" class="btn-press" style="padding:11px 28px;border:none;border-radius:var(--radius-md);font-size:14px;font-family:inherit;font-weight:600;cursor:pointer;background:var(--color-primary);color:var(--color-text-inverse);transition:all 150ms cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow-md);white-space:nowrap;display:flex;align-items:center;gap:6px;" onmouseover="this.style.background='var(--color-primary-light)';this.style.transform='translateY(-1px)';" onmouseout="this.style.background='var(--color-primary)';this.style.transform='translateY(0)';" onmousedown="this.style.transform='translateY(0)';">
+          <i data-lucide="save" style="width:15px;height:15px;"></i>保存设置
+        </button>
+      </div>
+    </div>
+
+    <style>
+      /* Chip hover states */
+      .chip:not(.chip-active):hover {
+        border-color: var(--color-primary) !important;
+        color: var(--color-primary) !important;
+        background: var(--color-primary-bg) !important;
+      }
+      .chip-active:hover {
+        background: var(--color-primary-light) !important;
+        border-color: var(--color-primary-light) !important;
+      }
+      /* Segmented button hover */
+      .seg-btn:not(.seg-active):hover {
+        color: var(--color-text) !important;
+        background: rgba(194,65,12,0.06) !important;
+      }
+      /* Toggle focus */
+      .toggle:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      /* Select arrow color fix */
+      select option {
+        background: var(--color-surface);
+        color: var(--color-text);
+      }
+      /* Spin animation for loader */
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+
+    <script>
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        var drawer = document.getElementById('mobileDrawer');
+        var overlay = document.getElementById('mobileDrawerOverlay');
+        drawer.classList.toggle('open');
+        overlay.classList.toggle('open');
+        document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+      }
+
+      // API Key show/hide toggle
+      function toggleApiKey() {
+        var input = document.getElementById('apiKeyInput');
+        var btn = document.getElementById('toggleKeyBtn');
+        if (input.type === 'password') {
+          input.type = 'text';
+          btn.textContent = '隐藏';
+        } else {
+          input.type = 'password';
+          btn.textContent = '显示';
+        }
+      }
+
+      // Chip multi-select toggle
+      function toggleChip(el) {
+        el.classList.toggle('chip-active');
+        if (el.classList.contains('chip-active')) {
+          el.style.border = '1px solid var(--color-primary)';
+          el.style.background = 'var(--color-primary)';
+          el.style.color = 'var(--color-text-inverse)';
+          if (el.textContent.length > 4) {
+            el.style.borderRadius = 'var(--radius-md)';
+          } else {
+            el.style.borderRadius = 'var(--radius-full)';
+          }
+        } else {
+          el.style.border = '1px solid var(--color-border)';
+          el.style.background = 'var(--color-surface)';
+          el.style.color = 'var(--color-text-secondary)';
+          if (el.textContent.length > 4) {
+            el.style.borderRadius = 'var(--radius-md)';
+          } else {
+            el.style.borderRadius = 'var(--radius-full)';
+          }
+        }
+      }
+
+      // Segmented control (single select)
+      function selectSeg(el) {
+        var group = el.parentElement;
+        var btns = group.querySelectorAll('.seg-btn');
+        btns.forEach(function(b) {
+          b.classList.remove('seg-active');
+          b.style.background = 'transparent';
+          b.style.color = 'var(--color-text-secondary)';
+          b.setAttribute('aria-checked', 'false');
+        });
+        el.classList.add('seg-active');
+        el.style.background = 'var(--color-primary)';
+        el.style.color = 'var(--color-text-inverse)';
+        el.setAttribute('aria-checked', 'true');
+      }
+
+      // Custom radio select
+      function selectRadio(el) {
+        var group = el.getAttribute('data-group');
+        var section = el.closest('section');
+        var allRadios = section.querySelectorAll('.radio-custom[data-group="' + group + '"]');
+        allRadios.forEach(function(r) {
+          r.classList.remove('radio-checked');
+          r.style.borderColor = 'var(--color-border)';
+          r.querySelector('span').style.background = 'transparent';
+          var inp = r.nextElementSibling;
+          if (inp && inp.type === 'radio') inp.checked = false;
+        });
+        el.classList.add('radio-checked');
+        el.style.borderColor = 'var(--color-primary)';
+        el.querySelector('span').style.background = 'var(--color-primary)';
+        var inp = el.nextElementSibling;
+        if (inp && inp.type === 'radio') inp.checked = true;
+      }
+
+      // Custom checkbox toggle
+      function toggleCheckbox(el) {
+        el.classList.toggle('checkbox-checked');
+        var check = el.querySelector('i');
+        var inp = el.nextElementSibling;
+        if (el.classList.contains('checkbox-checked')) {
+          el.style.borderColor = 'var(--color-primary)';
+          el.style.background = 'var(--color-primary)';
+          check.style.color = 'var(--color-text-inverse)';
+          if (inp) inp.checked = true;
+        } else {
+          el.style.borderColor = 'var(--color-border)';
+          el.style.background = 'var(--color-surface)';
+          check.style.color = 'transparent';
+          if (inp) inp.checked = false;
+        }
+      }
+
+      // Toggle switch
+      function toggleSwitch(el) {
+        el.classList.toggle('toggle-on');
+        var knob = el.querySelector('span');
+        if (el.classList.contains('toggle-on')) {
+          el.style.background = 'var(--color-primary)';
+          knob.style.left = '22px';
+          el.setAttribute('aria-checked', 'true');
+        } else {
+          el.style.background = 'var(--color-border)';
+          knob.style.left = '2px';
+          el.setAttribute('aria-checked', 'false');
+        }
+      }
+
+      // Test connection
+      function testConnection(btn) {
+        var original = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="loader-2" style="width:13px;height:13px;animation:spin 1s linear infinite;"></i>测试中...';
+        btn.style.color = 'var(--color-primary)';
+        btn.style.borderColor = 'var(--color-primary)';
+        setTimeout(function() {
+          btn.innerHTML = '<i data-lucide="check" style="width:13px;height:13px;"></i>连接成功';
+          btn.style.color = 'var(--state-success)';
+          btn.style.borderColor = 'var(--state-success)';
+          lucide.createIcons();
+          setTimeout(function() {
+            btn.innerHTML = original;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+            lucide.createIcons();
+          }, 2000);
+        }, 1200);
+        lucide.createIcons();
+      }
+
+      // Save settings
+      function saveSettings() {
+        var notice = document.getElementById('saveNotice');
+        notice.style.display = 'flex';
+        notice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(function() {
+          notice.style.display = 'none';
+        }, 4000);
+      }
+
+      // Reset defaults
+      function resetDefaults() {
+        // Reset inputs to defaults
+        var inputs = document.querySelectorAll('main input[type="text"]');
+        inputs.forEach(function(inp) {
+          if (inp.value === '求职小伙伴' || inp.value === '数学（跨考计算机）') return;
+          // others keep as-is in a real reset; for demo just flash
+        });
+      }
+
+      // Export / clear stubs
+      function exportData() {
+        var btn = event.currentTarget;
+        var original = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" style="width:14px;height:14px;"></i>已导出';
+        btn.style.color = 'var(--state-success)';
+        btn.style.borderColor = 'var(--state-success)';
+        lucide.createIcons();
+        setTimeout(function() {
+          btn.innerHTML = original;
+          btn.style.color = '';
+          btn.style.borderColor = '';
+          lucide.createIcons();
+        }, 2000);
+      }
+      function confirmAction(action) {
+        if (action === 'clear') {
+          var btn = event.currentTarget;
+          var original = btn.innerHTML;
+          btn.innerHTML = '<i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>确认清除？';
+          btn.style.background = 'rgba(185,28,28,0.08)';
+          btn.onclick = function() {
+            btn.innerHTML = '<i data-lucide="check" style="width:14px;height:14px;"></i>已清除';
+            btn.style.color = 'var(--state-success)';
+            btn.style.borderColor = 'var(--state-success)';
+            btn.style.background = 'rgba(21,128,61,0.06)';
+            btn.onclick = null;
+            lucide.createIcons();
+            setTimeout(function() {
+              btn.innerHTML = original;
+              btn.style.color = '';
+              btn.style.borderColor = '';
+              btn.style.background = '';
+              btn.onclick = function() { confirmAction('clear'); };
+              lucide.createIcons();
+            }, 2500);
+            lucide.createIcons();
+          };
+          lucide.createIcons();
+        }
+      }
+
+      // Re-init lucide after dynamic content
+      lucide.createIcons();
+    </script>
+</body>
+</html>

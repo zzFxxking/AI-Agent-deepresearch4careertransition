@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI求职助手 - 生成中</title>
+    <style id="theme-vars">
+/* === 暖橙活力风 — Warm Energetic === */
+:root {
+  /* Brand Colors */
+  --color-primary: #c2410c;
+  --color-primary-light: #ea580c;
+  --color-primary-dark: #9a3412;
+  --color-primary-bg: #fff7ed;
+  --color-primary-subtle: #ffedd5;
+
+  /* Surfaces */
+  --color-bg: #fffbf5;
+  --color-bg-alt: #fef3e2;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fffbf5;
+  --color-border: #f5dbb8;
+  --color-border-light: #fcebd3;
+
+  /* Text */
+  --color-text: #1c1410;
+  --color-text-secondary: #78350f;
+  --color-text-muted: #b08968;
+  --color-text-inverse: #ffffff;
+
+  /* State Colors */
+  --state-success: #15803d;
+  --state-warning: #b45309;
+  --state-error: #b91c1c;
+  --state-info: #0369a1;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(194,65,12,0.04);
+  --shadow-md: 0 4px 12px rgba(194,65,12,0.06);
+  --shadow-lg: 0 8px 24px rgba(194,65,12,0.08);
+  --shadow-xl: 0 16px 48px rgba(194,65,12,0.1);
+}
+
+.dark {
+  --color-bg: #1a1008;
+  --color-bg-alt: #241810;
+  --color-surface: #2e1f14;
+  --color-surface-hover: #3a2818;
+  --color-border: #443020;
+  --color-border-light: #382618;
+  --color-text: #fef3e2;
+  --color-text-secondary: #d4a574;
+  --color-text-muted: #8b6040;
+  --color-primary-bg: #2a1508;
+  --color-primary-subtle: #3d2010;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-primary: var(--color-primary);
+    --color-border: var(--color-border);
+  }
+  @layer base {
+    body { background: var(--color-surface); color: var(--color-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+    <link rel="stylesheet" href="../assets/common.css">
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--color-bg); font-family: var(--font-sans);">
+    <!-- 顶部导航 -->
+    <nav style="position:sticky; top:0; z-index:50; width:100%; background: var(--color-bg); border-bottom: 1px solid var(--color-border-light);">
+      <div style="max-width:1200px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+        <a href="index-warm-energetic.html" style="display:flex; align-items:center; gap:8px; text-decoration:none; color: var(--color-text);">
+          <i data-lucide="briefcase" style="width:24px; height:24px; color: var(--color-primary);"></i>
+          <span style="font-size:18px; font-weight:600; color: var(--color-text);">AI求职助手</span>
+        </a>
+        <button id="btn-cancel-top" class="btn-press" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; border-radius: var(--radius-md); border:1px solid var(--state-error); background:transparent; color: var(--state-error); font-size:14px; font-weight:500; cursor:pointer; white-space:nowrap; transition: background 150ms cubic-bezier(.2,.8,.2,1), color 150ms cubic-bezier(.2,.8,.2,1);">
+          <i data-lucide="x" style="width:16px; height:16px;"></i>
+          取消生成
+        </button>
+      </div>
+    </nav>
+
+    <main class="animate-fade-in-up mobile-px-4" style="max-width:720px; margin:0 auto; padding:48px 24px 80px;">
+      <!-- 状态头部 -->
+      <div style="text-align:center; margin-bottom:40px;">
+        <!-- 生成中插图 -->
+        <img src="../assets/generating-illustration.jpg" alt="AI多智能体协作中" class="animate-float gen-illustration" style="display:block; max-width:200px; width:100%; height:auto; margin:0 auto 24px; border-radius: var(--radius-lg);">
+        <h1 id="status-title" class="animate-fade-in-up delay-200" style="font-size:clamp(24px, 3vw, 32px); font-weight:600; color: var(--color-text); margin:0 0 8px; line-height:1.2; text-wrap:balance; word-break:keep-all;">正在为你生成专属报告</h1>
+        <p class="animate-fade-in-up delay-200" style="font-size:15px; color: var(--color-text-muted); margin:0; line-height:1.6;">AI多智能体正在协作处理你的需求，请稍候…</p>
+      </div>
+
+      <!-- 水平步骤指示器 -->
+      <div class="animate-fade-in-up delay-300" style="margin-bottom:40px;">
+        <div class="step-track steps-horizontal" style="display:flex; align-items:flex-start; justify-content:space-between; position:relative;">
+          <!-- 连接线 -->
+          <div style="position:absolute; top:20px; left:20px; right:20px; height:2px; background: var(--color-border-light); z-index:0;"></div>
+          <div class="step-line-fill" style="position:absolute; top:20px; left:20px; height:2px; background: var(--color-primary); z-index:1; width:calc(50% - 20px); transition: width 600ms cubic-bezier(.3,0,0,1);"></div>
+
+          <!-- Step 1: completed -->
+          <div style="display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; flex:1;">
+            <div style="width:40px; height:40px; border-radius:50%; background: var(--color-primary); display:flex; align-items:center; justify-content:center; color: var(--color-text-inverse); box-shadow:0 0 0 4px var(--color-primary-subtle);">
+              <i data-lucide="check" style="width:20px; height:20px;"></i>
+            </div>
+            <span style="font-size:13px; font-weight:500; color: var(--color-primary); margin-top:8px; white-space:nowrap;">画像解析</span>
+          </div>
+
+          <!-- Step 2: completed -->
+          <div style="display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; flex:1;">
+            <div style="width:40px; height:40px; border-radius:50%; background: var(--color-primary); display:flex; align-items:center; justify-content:center; color: var(--color-text-inverse); box-shadow:0 0 0 4px var(--color-primary-subtle);">
+              <i data-lucide="check" style="width:20px; height:20px;"></i>
+            </div>
+            <span style="font-size:13px; font-weight:500; color: var(--color-primary); margin-top:8px; white-space:nowrap;">任务编排</span>
+          </div>
+
+          <!-- Step 3: in-progress (pulsing) -->
+          <div style="display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; flex:1;">
+            <div class="step-active animate-pulse-ring" style="width:40px; height:40px; border-radius:50%; background: var(--color-primary); display:flex; align-items:center; justify-content:center; color: var(--color-text-inverse); position:relative;">
+              <div class="step-pulse-ring" style="position:absolute; inset:-4px; border-radius:50%; border:2px solid var(--color-primary); opacity:0;"></div>
+              <i data-lucide="search-code" style="width:18px; height:18px;"></i>
+            </div>
+            <span style="font-size:13px; font-weight:600; color: var(--color-primary); margin-top:8px; white-space:nowrap;">深度搜索</span>
+          </div>
+
+          <!-- Step 4: pending -->
+          <div style="display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; flex:1;">
+            <div style="width:40px; height:40px; border-radius:50%; background: var(--color-surface); border:2px solid var(--color-border); display:flex; align-items:center; justify-content:center; color: var(--color-text-muted);">
+              <i data-lucide="shield-check" style="width:18px; height:18px;"></i>
+            </div>
+            <span style="font-size:13px; font-weight:400; color: var(--color-text-muted); margin-top:8px; white-space:nowrap;">质量审查</span>
+          </div>
+
+          <!-- Step 5: pending -->
+          <div style="display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; flex:1;">
+            <div style="width:40px; height:40px; border-radius:50%; background: var(--color-surface); border:2px solid var(--color-border); display:flex; align-items:center; justify-content:center; color: var(--color-text-muted);">
+              <i data-lucide="file-text" style="width:18px; height:18px;"></i>
+            </div>
+            <span style="font-size:13px; font-weight:400; color: var(--color-text-muted); margin-top:8px; white-space:nowrap;">报告生成</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 三份报告进度卡片 -->
+      <div class="report-grid report-tracks mobile-grid-1" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:32px;">
+        <!-- 学习路径报告 -->
+        <div class="report-card card-hover animate-fade-in-up delay-200" style="background: var(--color-surface); border:1px solid var(--color-border-light); border-radius: var(--radius-lg); padding:20px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <div style="width:36px; height:36px; border-radius: var(--radius-md); background: var(--color-primary-bg); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i data-lucide="graduation-cap" style="width:18px; height:18px; color: var(--color-primary);"></i>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="font-size:14px; font-weight:600; color: var(--color-text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">学习路径</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <div style="height:6px; background: var(--color-primary-subtle); border-radius: var(--radius-full); overflow:hidden;">
+              <div class="progress-bar progress-shimmer" data-target="75" style="height:100%; width:0%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 800ms cubic-bezier(.3,0,0,1);"></div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="progress-status" style="font-size:12px; color: var(--color-text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">整理资源中…</span>
+            <span class="progress-percent" style="font-size:12px; font-weight:600; color: var(--color-primary); font-variant-numeric: tabular-nums;">0%</span>
+          </div>
+        </div>
+
+        <!-- 八股面试报告 -->
+        <div class="report-card card-hover animate-fade-in-up delay-300" style="background: var(--color-surface); border:1px solid var(--color-border-light); border-radius: var(--radius-lg); padding:20px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <div style="width:36px; height:36px; border-radius: var(--radius-md); background: var(--color-primary-bg); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i data-lucide="book-open" style="width:18px; height:18px; color: var(--color-primary);"></i>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="font-size:14px; font-weight:600; color: var(--color-text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">八股面试</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <div style="height:6px; background: var(--color-primary-subtle); border-radius: var(--radius-full); overflow:hidden;">
+              <div class="progress-bar progress-shimmer" data-target="45" style="height:100%; width:0%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 800ms cubic-bezier(.3,0,0,1);"></div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="progress-status" style="font-size:12px; color: var(--color-text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">搜索面试题…</span>
+            <span class="progress-percent" style="font-size:12px; font-weight:600; color: var(--color-primary); font-variant-numeric: tabular-nums;">0%</span>
+          </div>
+        </div>
+
+        <!-- 项目推荐报告 -->
+        <div class="report-card card-hover animate-fade-in-up delay-400" style="background: var(--color-surface); border:1px solid var(--color-border-light); border-radius: var(--radius-lg); padding:20px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <div style="width:36px; height:36px; border-radius: var(--radius-md); background: var(--color-primary-bg); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <i data-lucide="folder-git-2" style="width:18px; height:18px; color: var(--color-primary);"></i>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="font-size:14px; font-weight:600; color: var(--color-text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">项目推荐</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <div style="height:6px; background: var(--color-primary-subtle); border-radius: var(--radius-full); overflow:hidden;">
+              <div class="progress-bar progress-shimmer" data-target="30" style="height:100%; width:0%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 800ms cubic-bezier(.3,0,0,1);"></div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="progress-status" style="font-size:12px; color: var(--color-text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">筛选项目中…</span>
+            <span class="progress-percent" style="font-size:12px; font-weight:600; color: var(--color-primary); font-variant-numeric: tabular-nums;">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SSE终端日志 -->
+      <div class="animate-fade-in-up delay-500" style="margin-bottom:32px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+          <i data-lucide="terminal" style="width:16px; height:16px; color: var(--color-text-muted);"></i>
+          <span style="font-size:13px; font-weight:500; color: var(--color-text-secondary);">实时日志</span>
+        </div>
+        <div id="terminal" class="terminal-box" style="background:#1c1410; border-radius: var(--radius-lg); padding:16px 20px; height:240px; overflow-y:auto; font-family: var(--font-mono); font-size:13px; line-height:1.7; color:#d4a574;">
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:01]</span>
+            <span class="log-agent log-orchestrator" style="color:#ea580c; flex-shrink:0;">[Orchestrator]</span>
+            <span class="log-msg" style="color:#d4a574;">接收到用户请求，开始解析…</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:03]</span>
+            <span class="log-agent log-profile" style="color:#22c55e; flex-shrink:0;">[ProfileAgent]</span>
+            <span class="log-msg" style="color:#d4a574;">画像解析完成：数学背景 → 转大模型应用开发</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:05]</span>
+            <span class="log-agent log-orchestrator" style="color:#ea580c; flex-shrink:0;">[Orchestrator]</span>
+            <span class="log-msg" style="color:#d4a574;">分解为3个子任务，启动Worker并行处理</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:08]</span>
+            <span class="log-agent log-search" style="color:#38bdf8; flex-shrink:0;">[SearchWorker-1]</span>
+            <span class="log-msg" style="color:#d4a574;">搜索大模型面试题最新趋势…</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:12]</span>
+            <span class="log-agent log-search" style="color:#38bdf8; flex-shrink:0;">[SearchWorker-2]</span>
+            <span class="log-msg" style="color:#d4a574;">搜索GitHub热门LLM项目…</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:15]</span>
+            <span class="log-agent log-search" style="color:#38bdf8; flex-shrink:0;">[SearchWorker-3]</span>
+            <span class="log-msg" style="color:#d4a574;">整理学习路径资源…</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:22]</span>
+            <span class="log-agent log-critic" style="color:#fbbf24; flex-shrink:0;">[CriticAgent]</span>
+            <span class="log-msg" style="color:#d4a574;">检查学习路径质量…</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:25]</span>
+            <span class="log-agent log-critic" style="color:#fbbf24; flex-shrink:0;">[CriticAgent]</span>
+            <span class="log-msg" style="color:#fbbf24;">⚠ 检测到项目难度偏高，触发重规划</span>
+          </div>
+          <div class="log-line" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:28]</span>
+            <span class="log-agent log-orchestrator" style="color:#ea580c; flex-shrink:0;">[Orchestrator]</span>
+            <span class="log-msg" style="color:#d4a574;">启动第2轮迭代优化…</span>
+          </div>
+          <div class="log-line" id="log-last" style="display:flex; gap:8px; white-space:pre-wrap; word-break:break-all;">
+            <span class="log-time" style="color:#8b6040; flex-shrink:0;">[14:23:35]</span>
+            <span class="log-agent log-search" style="color:#38bdf8; flex-shrink:0;">[SearchWorker-2]</span>
+            <span class="log-msg" style="color:#d4a574;">补充搜索MCP协议相关项目…</span>
+            <span class="cursor-blink animate-blink" style="display:inline-block; width:8px; height:16px; background:#ea580c; margin-left:2px; vertical-align:text-bottom;"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部操作区 -->
+      <div class="animate-fade-in-up delay-600" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span id="eta-text" style="font-size:13px; color: var(--color-text-muted); display:inline-flex; align-items:center; gap:6px;">
+            <i data-lucide="clock" style="width:14px; height:14px;"></i>
+            预计还需 <span id="eta-time" style="font-weight:600; color: var(--color-text-secondary); font-variant-numeric: tabular-nums;">1分32秒</span>
+          </span>
+        </div>
+        <div class="mobile-stack" style="display:flex; align-items:center; gap:12px;">
+          <button id="btn-cancel-bottom" class="btn-press mobile-full" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 24px; border-radius: var(--radius-md); border:1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-secondary); font-size:14px; font-weight:500; cursor:pointer; white-space:nowrap; transition: background 150ms cubic-bezier(.2,.8,.2,1), border-color 150ms cubic-bezier(.2,.8,.2,1);">
+            取消生成
+          </button>
+          <button data-dom-id="view-result" id="btn-view-result" disabled class="btn-press mobile-full" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:10px 28px; border-radius: var(--radius-md); border:none; background: var(--color-border-light); color: var(--color-text-muted); font-size:14px; font-weight:600; cursor:not-allowed; white-space:nowrap; opacity:0.6;">
+            <i data-lucide="loader-circle" style="width:16px; height:16px; animation: spin 1s linear infinite;"></i>
+            生成中…
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 自定义样式 -->
+    <style>
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes pulseRing {
+        0% { transform: scale(1); opacity: 0.6; }
+        100% { transform: scale(1.8); opacity: 0; }
+      }
+      .step-pulse-ring {
+        animation: pulseRing 1.8s cubic-bezier(.3,0,0,1) infinite;
+      }
+      /* 终端滚动条样式 */
+      .terminal-box::-webkit-scrollbar {
+        width: 6px;
+      }
+      .terminal-box::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .terminal-box::-webkit-scrollbar-thumb {
+        background: #443020;
+        border-radius: 3px;
+      }
+      .terminal-box::-webkit-scrollbar-thumb:hover {
+        background: #5a4030;
+      }
+      /* 按钮hover */
+      #btn-cancel-top:hover {
+        background: rgba(185,28,28,0.06);
+      }
+      #btn-cancel-bottom:hover {
+        background: var(--color-bg-alt);
+        border-color: var(--color-border);
+      }
+      /* 卡片hover */
+      .report-card {
+        transition: border-color 200ms cubic-bezier(.2,.8,.2,1), transform 200ms cubic-bezier(.2,.8,.2,1);
+      }
+      .report-card:hover {
+        border-color: var(--color-border);
+      }
+      /* 进度条闪光效果（扫光） */
+      .progress-bar {
+        position: relative;
+        overflow: hidden;
+      }
+      .progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 40px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        animation: shimmerSweep 2s ease-in-out infinite;
+      }
+      @keyframes shimmerSweep {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(300%); }
+      }
+      /* 生成中插图响应式 + 移动端布局 */
+      @media (max-width: 640px) {
+        .gen-illustration {
+          max-width: 160px !important;
+        }
+        .report-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .step-track {
+          gap: 4px;
+        }
+        .step-track > div > span {
+          font-size: 11px !important;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .step-pulse-ring,
+        .cursor-blink,
+        .progress-bar::after,
+        .animate-fade-in-up,
+        .animate-float,
+        .animate-pulse-ring,
+        .animate-blink,
+        .progress-shimmer {
+          animation: none !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+    </style>
+
+    <script>
+      lucide.createIcons();
+
+      // 进度条动画
+      (function() {
+        var bars = document.querySelectorAll('.progress-bar');
+        var percents = document.querySelectorAll('.progress-percent');
+        var targets = [];
+        bars.forEach(function(bar, i) {
+          targets.push({
+            bar: bar,
+            percentEl: percents[i],
+            target: parseInt(bar.getAttribute('data-target') || '0', 10),
+            current: 0
+          });
+        });
+
+        var duration = 2500;
+        var startTime = null;
+        function animate(ts) {
+          if (!startTime) startTime = ts;
+          var elapsed = ts - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          // easeOut
+          var ease = 1 - Math.pow(1 - progress, 3);
+          targets.forEach(function(t) {
+            var val = Math.round(t.target * ease);
+            t.bar.style.width = val + '%';
+            t.percentEl.textContent = val + '%';
+          });
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            // 完成后开始微小波动
+            startFluctuation();
+          }
+        }
+        requestAnimationFrame(animate);
+
+        function startFluctuation() {
+          setInterval(function() {
+            targets.forEach(function(t) {
+              var delta = Math.random() > 0.5 ? 1 : -1;
+              var next = Math.min(99, Math.max(t.target - 2, t.target + (Math.random() * 6 - 2)));
+              var newVal = Math.round(next);
+              if (newVal !== parseInt(t.bar.style.width)) {
+                t.bar.style.width = newVal + '%';
+                t.percentEl.textContent = newVal + '%';
+              }
+            });
+          }, 1800);
+        }
+      })();
+
+      // ETA倒计时
+      (function() {
+        var etaEl = document.getElementById('eta-time');
+        var totalSeconds = 92;
+        var remaining = totalSeconds;
+        setInterval(function() {
+          if (remaining > 0) remaining--;
+          var m = Math.floor(remaining / 60);
+          var s = remaining % 60;
+          var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+          etaEl.textContent = m + '分' + pad(s) + '秒';
+        }, 1000);
+      })();
+
+      // 自动滚动终端到底部
+      (function() {
+        var term = document.getElementById('terminal');
+        term.scrollTop = term.scrollHeight;
+      })();
+
+      // 取消按钮交互
+      document.getElementById('btn-cancel-top').addEventListener('click', function() {
+        if (confirm('确定要取消生成吗？已生成的内容将不会保留。')) {
+          window.location.href = 'index-warm-energetic.html';
+        }
+      });
+      document.getElementById('btn-cancel-bottom').addEventListener('click', function() {
+        if (confirm('确定要取消生成吗？已生成的内容将不会保留。')) {
+          window.location.href = 'index-warm-energetic.html';
+        }
+      });
+    </script>
+</body>
+</html>

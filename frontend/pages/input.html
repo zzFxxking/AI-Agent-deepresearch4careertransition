@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI求职助手 - 描述需求</title>
+    <style id="theme-vars">
+/* === 暖橙活力风 — Warm Energetic === */
+:root {
+  /* Brand Colors */
+  --color-primary: #c2410c;
+  --color-primary-light: #ea580c;
+  --color-primary-dark: #9a3412;
+  --color-primary-bg: #fff7ed;
+  --color-primary-subtle: #ffedd5;
+
+  /* Surfaces */
+  --color-bg: #fffbf5;
+  --color-bg-alt: #fef3e2;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fffbf5;
+  --color-border: #f5dbb8;
+  --color-border-light: #fcebd3;
+
+  /* Text */
+  --color-text: #1c1410;
+  --color-text-secondary: #78350f;
+  --color-text-muted: #b08968;
+  --color-text-inverse: #ffffff;
+
+  /* State Colors */
+  --state-success: #15803d;
+  --state-warning: #b45309;
+  --state-error: #b91c1c;
+  --state-info: #0369a1;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: "Inter", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(194,65,12,0.04);
+  --shadow-md: 0 4px 12px rgba(194,65,12,0.06);
+  --shadow-lg: 0 8px 24px rgba(194,65,12,0.08);
+  --shadow-xl: 0 16px 48px rgba(194,65,12,0.1);
+}
+
+.dark {
+  --color-bg: #1a1008;
+  --color-bg-alt: #241810;
+  --color-surface: #2e1f14;
+  --color-surface-hover: #3a2818;
+  --color-border: #443020;
+  --color-border-light: #382618;
+  --color-text: #fef3e2;
+  --color-text-secondary: #d4a574;
+  --color-text-muted: #8b6040;
+  --color-primary-bg: #2a1508;
+  --color-primary-subtle: #3d2010;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.5);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-primary: var(--color-primary);
+    --color-border: var(--color-border);
+  }
+  @layer base {
+    body { background: var(--color-surface); color: var(--color-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+    <link rel="stylesheet" href="../assets/common.css">
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans);">
+    <!-- 顶部导航 -->
+    <nav class="animate-fade-in" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: var(--color-bg); border-bottom: 1px solid var(--color-border-light);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between;">
+        <a href="index-warm-energetic.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--color-text);">
+          <span style="width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--color-primary); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="briefcase" style="width: 18px; height: 18px; color: var(--color-text-inverse);"></i>
+          </span>
+          <span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">AI求职助手</span>
+        </a>
+        <div class="hide-mobile" style="display: flex; align-items: center; gap: 32px;">
+          <a href="index-warm-energetic.html" style="font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: color 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-secondary)'">首页</a>
+          <a href="history.html" style="font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: color 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-secondary)'">历史记录</a>
+          <a href="settings.html" style="font-size: 15px; color: var(--color-text-secondary); text-decoration: none; transition: color 150ms cubic-bezier(.2,.8,.2,1);" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-secondary)'">设置</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.getElementById('mobile-drawer').classList.toggle('open'); document.getElementById('mobile-overlay').classList.toggle('open');" aria-label="菜单">
+          <i data-lucide="menu" style="width: 20px; height: 20px; color: var(--color-text);"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-overlay" class="mobile-drawer-overlay" onclick="this.classList.remove('open'); document.getElementById('mobile-drawer').classList.remove('open');"></div>
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-light);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="width: 34px; height: 34px; border-radius: var(--radius-md); background: var(--color-primary); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="briefcase" style="width: 18px; height: 18px; color: var(--color-text-inverse);"></i>
+          </span>
+          <span style="font-size: 17px; font-weight: 600;">AI求职助手</span>
+        </div>
+        <button onclick="document.getElementById('mobile-drawer').classList.remove('open'); document.getElementById('mobile-overlay').classList.remove('open');" style="width: 36px; height: 36px; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <i data-lucide="x" style="width: 18px; height: 18px; color: var(--color-text-secondary);"></i>
+        </button>
+      </div>
+      <nav style="display: flex; flex-direction: column; gap: 4px; flex: 1;">
+        <a href="index-warm-energetic.html" style="padding: 12px 16px; border-radius: var(--radius-md); color: var(--color-text-secondary); text-decoration: none; font-size: 15px;">首页</a>
+        <a href="input.html" style="padding: 12px 16px; border-radius: var(--radius-md); color: var(--color-primary); text-decoration: none; font-size: 15px; font-weight: 600;">描述需求</a>
+        <a href="history.html" style="padding: 12px 16px; border-radius: var(--radius-md); color: var(--color-text-secondary); text-decoration: none; font-size: 15px;">历史记录</a>
+        <a href="settings.html" style="padding: 12px 16px; border-radius: var(--radius-md); color: var(--color-text-secondary); text-decoration: none; font-size: 15px;">设置</a>
+      </nav>
+    </div>
+
+    <main style="padding-top: 68px; min-height: 100vh;">
+      <!-- 页面头部区域 -->
+      <section style="padding: 48px 0 32px;">
+        <div class="mobile-px-4" style="max-width: 880px; margin: 0 auto; padding: 0 24px;">
+          <div style="margin-bottom: 8px;">
+            <a href="index-warm-energetic.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--color-text-muted); text-decoration: none; transition: color 150ms;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='var(--color-text-muted)'">
+              <i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i>
+              返回首页
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 表单主区域 -->
+      <section style="padding-bottom: 80px;">
+        <div class="mobile-px-4" style="max-width: 880px; margin: 0 auto; padding: 0 24px;">
+          <div class="form-grid-layout form-layout mobile-grid-1" style="display: grid; grid-template-columns: 1fr 240px; gap: 32px; align-items: start;">
+
+            <!-- 左侧主表单 -->
+            <div style="min-width: 0;">
+
+              <!-- 步骤指示器 -->
+              <div class="animate-fade-in-up" style="margin-bottom: 32px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                  <span style="font-size: 14px; font-weight: 600; color: var(--color-primary);">第 1 步 / 共 2 步</span>
+                  <span style="font-size: 13px; color: var(--color-text-muted);">描述你的求职需求</span>
+                </div>
+                <div style="width: 100%; height: 6px; background: var(--color-primary-subtle); border-radius: var(--radius-full); overflow: hidden;">
+                  <div style="width: 50%; height: 100%; background: var(--color-primary); border-radius: var(--radius-full); transition: width 300ms cubic-bezier(.2,.8,.2,1);"></div>
+                </div>
+              </div>
+
+              <!-- 页面标题 -->
+              <div class="animate-fade-in-up delay-100" style="margin-bottom: 32px;">
+                <h1 style="font-size: clamp(26px, 3vw, 32px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; color: var(--color-text); margin: 0 0 8px 0; text-wrap: balance; word-break: keep-all;">
+                  描述你的求职需求
+                </h1>
+                <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin: 0;">
+                  告诉AI你的目标和现状，系统将为你生成专属的求职准备方案
+                </p>
+              </div>
+
+              <!-- 自然语言描述 -->
+              <div class="animate-fade-in-up delay-200" style="margin-bottom: 28px;">
+                <label for="narrative-input" style="display: block; font-size: 15px; font-weight: 600; color: var(--color-text); margin-bottom: 8px;">
+                  用自己的话描述你的情况
+                </label>
+                <textarea
+                  id="narrative-input"
+                  data-dom-id="narrative-input"
+                  placeholder="例如：我是数学专业研一学生，跨考计算机，会Python和PyTorch基础，想找大模型应用开发方向的暑期实习，有3个月准备时间..."
+                  style="width: 100%; min-height: 140px; padding: 14px 16px; font-size: 15px; line-height: 1.7; font-family: var(--font-sans); color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); resize: vertical; outline: none; transition: border-color 150ms cubic-bezier(.2,.8,.2,1), box-shadow 150ms cubic-bezier(.2,.8,.2,1), transform 200ms cubic-bezier(.2,.8,.2,1); box-sizing: border-box; transform-origin: center top;"
+                  onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)'; this.style.transform='scale(1.01)';"
+                  onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'; this.style.transform='scale(1)';"
+                ></textarea>
+                <p style="font-size: 13px; color: var(--color-text-muted); margin: 8px 0 0 0; display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--color-primary);"></i>
+                  越详细越好，AI会自动提取关键信息
+                </p>
+              </div>
+
+              <!-- 快速模板 -->
+              <div style="margin-bottom: 32px;">
+                <label style="display: block; font-size: 15px; font-weight: 600; color: var(--color-text); margin-bottom: 12px;">
+                  快速开始
+                </label>
+                <div class="template-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                  <button type="button" class="template-card card-hover animate-scale-in delay-100" data-template="3个月备战大模型算法岗，有机器学习和深度学习基础，熟悉PyTorch，目标是大厂算法岗暑期实习。"
+                    style="padding: 16px; background: var(--color-primary-subtle); border: 1px solid transparent; border-radius: var(--radius-md); cursor: pointer; text-align: left; transition: border-color 150ms, transform 150ms, background 150ms; font-family: var(--font-sans);"
+                    onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-2px)';"
+                    onmouseout="if(!this.classList.contains('selected')){this.style.borderColor='transparent'; this.style.transform='translateY(0)';}"
+                    onclick="selectTemplate(this)">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-text); margin-bottom: 4px;">3个月备战大模型算法岗</div>
+                    <div style="font-size: 12px; color: var(--color-text-muted);">适合有ML基础</div>
+                  </button>
+                  <button type="button" class="template-card card-hover animate-scale-in delay-200" data-template="0基础想转AI应用开发方向，目前只会基本Python，没有深度学习经验，想通过自学转型，目标是中型AI公司的应用开发岗位。"
+                    style="padding: 16px; background: var(--color-primary-subtle); border: 1px solid transparent; border-radius: var(--radius-md); cursor: pointer; text-align: left; transition: border-color 150ms, transform 150ms, background 150ms; font-family: var(--font-sans);"
+                    onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-2px)';"
+                    onmouseout="if(!this.classList.contains('selected')){this.style.borderColor='transparent'; this.style.transform='translateY(0)';}"
+                    onclick="selectTemplate(this)">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-text); margin-bottom: 4px;">0基础转AI应用开发</div>
+                    <div style="font-size: 12px; color: var(--color-text-muted);">适合转行者</div>
+                  </button>
+                  <button type="button" class="template-card card-hover animate-scale-in delay-300" data-template="距离暑期实习投递只剩1个月，计算机科班背景，有一定编程基础，想快速冲刺大模型相关岗位的暑期实习机会。"
+                    style="padding: 16px; background: var(--color-primary-subtle); border: 1px solid transparent; border-radius: var(--radius-md); cursor: pointer; text-align: left; transition: border-color 150ms, transform 150ms, background 150ms; font-family: var(--font-sans);"
+                    onmouseover="this.style.borderColor='var(--color-primary)'; this.style.transform='translateY(-2px)';"
+                    onmouseout="if(!this.classList.contains('selected')){this.style.borderColor='transparent'; this.style.transform='translateY(0)';}"
+                    onclick="selectTemplate(this)">
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-text); margin-bottom: 4px;">1个月冲刺暑期实习</div>
+                    <div style="font-size: 12px; color: var(--color-text-muted);">时间紧迫</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 分割线 -->
+              <div style="height: 1px; background: var(--color-border-light); margin-bottom: 28px;"></div>
+
+              <!-- 结构化字段 -->
+              <div class="animate-fade-in-up delay-300" style="margin-bottom: 32px;">
+                <h2 style="font-size: 16px; font-weight: 600; color: var(--color-text); margin: 0 0 20px 0; display: flex; align-items: center; gap: 8px;">
+                  <i data-lucide="sliders-horizontal" style="width: 18px; height: 18px; color: var(--color-primary);"></i>
+                  补充细节（可选）
+                </h2>
+
+                <!-- 目标岗位 -->
+                <div style="margin-bottom: 20px;">
+                  <label for="target-position" style="display: block; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px;">
+                    目标岗位
+                  </label>
+                  <input
+                    type="text"
+                    id="target-position"
+                    placeholder="如：大模型应用开发工程师"
+                    style="width: 100%; height: 44px; padding: 0 14px; font-size: 15px; font-family: var(--font-sans); color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; outline: none; box-sizing: border-box; transition: border-color 150ms, box-shadow 150ms, transform 200ms cubic-bezier(.2,.8,.2,1); transform-origin: center top;"
+                    onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)'; this.style.transform='scale(1.01)';"
+                    onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'; this.style.transform='scale(1)';"
+                  />
+                </div>
+
+                <!-- 准备时间 -->
+                <div style="margin-bottom: 20px;">
+                  <label for="prep-time" style="display: block; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px;">
+                    准备时间
+                  </label>
+                  <select
+                    id="prep-time"
+                    style="width: 100%; height: 44px; padding: 0 14px; font-size: 15px; font-family: var(--font-sans); color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; outline: none; box-sizing: border-box; appearance: none; cursor: pointer; transition: border-color 150ms, box-shadow 150ms, transform 200ms cubic-bezier(.2,.8,.2,1); transform-origin: center top; background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b08968%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px;"
+                    onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)'; this.style.transform='scale(1.01)';"
+                    onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'; this.style.transform='scale(1)';"
+                  >
+                    <option value="" disabled selected style="color: var(--color-text-muted);">请选择准备时间</option>
+                    <option value="1">1个月</option>
+                    <option value="2">2个月</option>
+                    <option value="3">3个月</option>
+                    <option value="6">6个月</option>
+                    <option value="6+">6个月以上</option>
+                  </select>
+                </div>
+
+                <!-- 目标公司 -->
+                <div style="margin-bottom: 20px;">
+                  <label style="display: block; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px;">
+                    目标公司
+                  </label>
+                  <div class="chip-group" data-group="target-company" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">大厂</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">中型公司</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">创业公司</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">外企</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">不限</button>
+                  </div>
+                </div>
+
+                <!-- 当前水平 -->
+                <div style="margin-bottom: 20px;">
+                  <label for="current-level" style="display: block; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px;">
+                    当前水平
+                  </label>
+                  <textarea
+                    id="current-level"
+                    rows="2"
+                    placeholder="描述你目前掌握的技能和项目经验..."
+                    style="width: 100%; min-height: 60px; padding: 10px 14px; font-size: 15px; line-height: 1.6; font-family: var(--font-sans); color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; resize: vertical; outline: none; box-sizing: border-box; transition: border-color 150ms, box-shadow 150ms, transform 200ms cubic-bezier(.2,.8,.2,1); transform-origin: center top;"
+                    onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)'; this.style.transform='scale(1.01)';"
+                    onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'; this.style.transform='scale(1)';"
+                  ></textarea>
+                </div>
+
+                <!-- 重点方向 -->
+                <div style="margin-bottom: 20px;">
+                  <label style="display: block; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px;">
+                    重点方向
+                  </label>
+                  <div class="chip-group" data-group="focus-area" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">RAG</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">Agent框架</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">MCP协议</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">微调训练</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">推理优化</button>
+                    <button type="button" class="chip" onclick="toggleChip(this)" style="padding: 7px 16px; font-size: 14px; font-family: var(--font-sans); color: var(--color-text-secondary); background: var(--color-primary-subtle); border: none; border-radius: var(--radius-md); cursor: pointer; transition: background 150ms, color 150ms; white-space: nowrap;">Prompt工程</button>
+                  </div>
+                </div>
+
+                <!-- 避开方向 -->
+                <div style="margin-bottom: 0;">
+                  <label for="avoid-areas" style="display: block; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px;">
+                    避开方向
+                  </label>
+                  <input
+                    type="text"
+                    id="avoid-areas"
+                    placeholder="如：前端开发、嵌入式..."
+                    style="width: 100%; height: 44px; padding: 0 14px; font-size: 15px; font-family: var(--font-sans); color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; outline: none; box-sizing: border-box; transition: border-color 150ms, box-shadow 150ms, transform 200ms cubic-bezier(.2,.8,.2,1); transform-origin: center top;"
+                    onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(194,65,12,0.1)'; this.style.transform='scale(1.01)';"
+                    onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'; this.style.transform='scale(1)';"
+                  />
+                </div>
+              </div>
+
+              <!-- 提交按钮区域 -->
+              <div>
+                <button
+                  type="button"
+                  class="btn-press animate-fade-in-up delay-400"
+                  data-dom-id="submit-btn"
+                  id="submit-btn"
+                  onclick="handleSubmit()"
+                  style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px 32px; background: var(--color-primary); color: var(--color-text-inverse); border: none; border-radius: var(--radius-md); font-size: 17px; font-weight: 600; font-family: var(--font-sans); cursor: pointer; transition: background 150ms cubic-bezier(.2,.8,.2,1), transform 150ms cubic-bezier(.2,.8,.2,1), box-shadow 150ms, opacity 150ms;"
+                  onmouseover="if(!this.disabled){this.style.background='var(--color-primary-light)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-lg)';}"
+                  onmouseout="if(!this.disabled){this.style.background='var(--color-primary)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';}"
+                  onmousedown="if(!this.disabled){this.style.transform='translateY(0) scale(0.97)';}"
+                  onmouseup="if(!this.disabled){this.style.transform='translateY(-2px)';}"
+                >
+                  <span class="btn-icon-default" style="display: inline-flex; align-items: center;"><i data-lucide="rocket" style="width: 20px; height: 20px;"></i></span>
+                  <span class="btn-icon-loading" style="display: none;"><i data-lucide="loader-2" style="width: 20px; height: 20px; animation: spin 1s linear infinite;"></i></span>
+                  <span class="btn-text-default">开始生成</span>
+                  <span class="btn-text-loading" style="display: none;">生成中...</span>
+                </button>
+                <p style="text-align: center; font-size: 13px; color: var(--color-text-muted); margin: 10px 0 0 0; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                  预计 3-5 分钟
+                </p>
+              </div>
+            </div>
+
+            <!-- 右侧小贴士边栏 -->
+            <div class="sidebar-tip-card form-sidebar animate-slide-right delay-200" style="position: sticky; top: 92px;">
+              <div style="background: var(--color-primary-bg); border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); padding: 24px 20px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                  <span style="width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--color-primary-subtle); display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="lightbulb" style="width: 16px; height: 16px; color: var(--color-primary);"></i>
+                  </span>
+                  <span style="font-size: 15px; font-weight: 600; color: var(--color-text);">小贴士</span>
+                </div>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+                  <li style="display: flex; gap: 10px; font-size: 13px; line-height: 1.6; color: var(--color-text-secondary);">
+                    <i data-lucide="check-circle-2" style="width: 15px; height: 15px; color: var(--state-success); flex-shrink: 0; margin-top: 2px;"></i>
+                    <span>明确目标岗位能让报告更精准</span>
+                  </li>
+                  <li style="display: flex; gap: 10px; font-size: 13px; line-height: 1.6; color: var(--color-text-secondary);">
+                    <i data-lucide="check-circle-2" style="width: 15px; height: 15px; color: var(--state-success); flex-shrink: 0; margin-top: 2px;"></i>
+                    <span>时间预算决定学习路径深度</span>
+                  </li>
+                  <li style="display: flex; gap: 10px; font-size: 13px; line-height: 1.6; color: var(--color-text-secondary);">
+                    <i data-lucide="check-circle-2" style="width: 15px; height: 15px; color: var(--state-success); flex-shrink: 0; margin-top: 2px;"></i>
+                    <span>AI会自动搜索最新面试题和开源项目</span>
+                  </li>
+                  <li style="display: flex; gap: 10px; font-size: 13px; line-height: 1.6; color: var(--color-text-secondary);">
+                    <i data-lucide="check-circle-2" style="width: 15px; height: 15px; color: var(--state-success); flex-shrink: 0; margin-top: 2px;"></i>
+                    <span>生成过程中可以随时取消</span>
+                  </li>
+                </ul>
+
+                <!-- 安全提示装饰 -->
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--color-border-light); display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="shield-check" style="width: 14px; height: 14px; color: var(--color-primary);"></i>
+                  <span style="font-size: 12px; color: var(--color-text-muted);">你的数据仅用于生成报告</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Chip 多选切换
+      function toggleChip(el) {
+        if (el.classList.contains('selected')) {
+          el.classList.remove('selected');
+          el.style.background = 'var(--color-primary-subtle)';
+          el.style.color = 'var(--color-text-secondary)';
+        } else {
+          el.classList.add('selected');
+          el.style.background = 'var(--color-primary)';
+          el.style.color = 'var(--color-text-inverse)';
+        }
+      }
+
+      // 快速模板选择
+      function selectTemplate(el) {
+        var cards = document.querySelectorAll('.template-card');
+        for (var i = 0; i < cards.length; i++) {
+          cards[i].classList.remove('selected');
+          cards[i].style.borderColor = 'transparent';
+          cards[i].style.background = 'var(--color-primary-subtle)';
+          cards[i].style.transform = 'translateY(0)';
+        }
+        el.classList.add('selected');
+        el.style.borderColor = 'var(--color-primary)';
+        el.style.background = 'var(--color-primary-bg)';
+
+        var textarea = document.getElementById('narrative-input');
+        textarea.value = el.getAttribute('data-template');
+        textarea.focus();
+      }
+
+      // 提交按钮处理
+      function handleSubmit() {
+        var btn = document.getElementById('submit-btn');
+        var narrative = document.getElementById('narrative-input').value.trim();
+        if (!narrative) {
+          var textarea = document.getElementById('narrative-input');
+          textarea.style.borderColor = 'var(--state-error)';
+          textarea.style.boxShadow = '0 0 0 3px rgba(185,28,28,0.1)';
+          textarea.focus();
+          setTimeout(function() {
+            textarea.style.borderColor = 'var(--color-border)';
+            textarea.style.boxShadow = 'none';
+            textarea.style.transform = 'scale(1)';
+          }, 2000);
+          return;
+        }
+        btn.disabled = true;
+        btn.style.opacity = '0.8';
+        btn.style.cursor = 'not-allowed';
+        btn.querySelector('.btn-icon-default').style.display = 'none';
+        btn.querySelector('.btn-icon-loading').style.display = 'inline-flex';
+        btn.querySelector('.btn-text-default').style.display = 'none';
+        btn.querySelector('.btn-text-loading').style.display = 'inline';
+      }
+    </script>
+
+    <style>
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; animation: none !important; }
+      }
+      @media (max-width: 768px) {
+        .form-grid-layout {
+          grid-template-columns: 1fr !important;
+        }
+        .template-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .sidebar-tip-card {
+          position: static !important;
+        }
+      }
+    </style>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
