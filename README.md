@@ -209,7 +209,7 @@ uvicorn deep_research.api:app --reload --port 8000
 ## 项目结构
 
 ```
-deep_research-学习助手/
+AI-Agent-deepresearch4careertransition/
 ├── README.md                   # 项目说明（当前文件）
 ├── spec.md                     # 需求规格说明书
 ├── design.md                   # 技术方案与架构设计
@@ -218,9 +218,25 @@ deep_research-学习助手/
 ├── ARCHITECTURE.md             # 架构深度讲解
 ├── DEMO.md                     # 完整使用案例演示
 ├── MIGRATION.md                # 改造前后对比
+├── optimization_direction.md   # 优化方向记录
 ├── .env.example                # 环境变量模板
 ├── Dockerfile                  # Docker 构建文件
 ├── run.sh                      # 一键运行脚本
+├── frontend/                   # 前端UI（暖橙活力风）
+│   ├── index.html              # 入口（自动跳转首页）
+│   ├── colors_and_type-warm-energetic.css  # 品牌配色变量
+│   ├── assets/
+│   │   ├── common.css          # 通用动效与响应式样式
+│   │   ├── hero-illustration.jpg      # Hero区人物插画
+│   │   ├── generating-illustration.jpg # 多智能体协作插画
+│   │   └── empty-state.jpg     # 空状态插画
+│   └── pages/
+│       ├── index-warm-energetic.html  # 首页（产品落地页）
+│       ├── input.html                 # 需求输入（表单+快速模板）
+│       ├── generating.html            # 生成进度（SSE日志+步骤进度条）
+│       ├── workbench.html             # 报告工作台（三Tab查看）
+│       ├── history.html               # 历史记录（搜索+列表）
+│       └── settings.html              # 个人设置（偏好+API配置）
 ├── purpose/                    # 项目目标与演进路线
 │   ├── purpose.md
 │   ├── harness_engineering.md
@@ -238,7 +254,11 @@ deep_research-学习助手/
 │   ├── user_profile.py         # 用户画像解析
 │   ├── memory.py               # AgentMemory 持久化
 │   ├── output_formatter.py     # 三轨输出格式化
-├── requirements.txt            # Python 依赖清单
+│   ├── react_agent.py          # ReAct Agent
+│   ├── react_tools.py          # ReAct 工具
+│   ├── mcp/                    # MCP协议模块
+│   │   ├── __init__.py
+│   │   └── config.py
 │   └── search_clients/         # 垂直搜索客户端
 │       ├── __init__.py
 │       ├── base.py             # 抽象基类
@@ -253,11 +273,27 @@ deep_research-学习助手/
 │   ├── test_search_clients.py
 │   ├── test_critic_worker.py
 │   ├── test_split_reports.py
+│   ├── test_mcp.py
+│   ├── test_react.py
 │   └── test_comprehensive.py
 ├── research_output/            # 示例输出
-└── data/                       # 本地持久化数据
-    └── agent_memory.db         # SQLite 记忆数据库
+└── requirements.txt            # Python 依赖清单
 ```
+
+### 前端使用方法
+
+前端是纯静态 HTML/CSS/JS 页面，无需构建，可直接打开或通过本地服务器访问：
+
+```bash
+# 方式一：直接用浏览器打开
+open frontend/index.html
+
+# 方式二：本地HTTP服务器（推荐）
+cd frontend && python3 -m http.server 8080
+# 访问 http://localhost:8080
+```
+
+前端设计风格为**暖橙活力风**（赤陶橙 #c2410c + 暖米底 #fffbf5），包含6个完整页面，支持响应式移动端适配（汉堡菜单+侧边栏抽屉），所有按钮均有正确页面跳转，具备页面进入动画、卡片hover、按钮按压、进度流光等微交互动效。
 
 ## 示例输出
 
@@ -281,11 +317,14 @@ research_output/
 
 ## 后续迭代方向
 
-- 学习进度追踪仪表盘（需要前端 + 用户系统）
+- ~~网页版前端~~（✅ 已完成：暖橙活力风 6 页面前端，位于 `frontend/` 目录）
+- 前后端联调：将前端表单/进度/报告页对接 FastAPI 后端（SSE 流式进度 + REST API）
+- 学习进度追踪仪表盘
 - 简历 PDF / GitHub 链接自动解析
 - RAG 向量索引历史面经/项目库
 - MCP 协议接入统一工具调用（✅ GitHub MCP Server 已集成，预留 Brave Search 扩展）
-- 微信小程序/网页版前端
+- 暗色模式切换
+- 微信小程序/移动端App
 
 ## 注意事项
 

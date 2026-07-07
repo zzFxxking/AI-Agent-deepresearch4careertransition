@@ -24,40 +24,54 @@
 ## 2. 新项目目录结构
 
 ```
-deep_research/
-├── __init__.py              # 【保留】包初始化
-├── __main__.py              # 【保留】模块入口
-├── api.py                   # 【微调】FastAPI服务，增加用户画像相关字段
-├── config.py                # 【修改】增加垂直搜索配置、AgentMemory配置、输出配置
-├── main.py                  # 【修改】DeepResearchAgent支持用户画像输入、三轨输出保存
-├── orchestrator.py          # 【修改】增加结构化输出生成、CriticWorker集成、用户画像透传
-├── output_formatter.py      # 【新增】将内部结构化数据渲染为 Markdown 报告 + JSON 文件
-├── prompts.py               # 【修改】全面重构为面试语境（任务拆解、Worker、Critic、差距分析）
-├── tools.py                 # 【修改】增加搜索客户端注册机制、GitHub/面经结果格式化
-├── user_profile.py          # 【新增】用户画像解析、验证、Pydantic模型
-├── workers.py               # 【修改】删除VisualizationWorker，弱化AnalysisWorker，新增CriticWorker
-├── memory.py                # 【新增】AgentMemory：SQLite本地持久化用户画像和历史记录
-└── search_clients/          # 【新增】垂直搜索客户端包
-    ├── __init__.py          # 【新增】统一导出
-    ├── base.py              # 【新增】搜索客户端抽象基类
-    ├── bocha.py             # 【新增/迁移】Bocha通用搜索（从tools.py迁移并适配基类）
-    ├── github.py            # 【新增】GitHub API项目搜索（stars/forks/语言/更新时间过滤）
-    └── interview.py         # 【新增】面经站点搜索（牛客/力扣/知乎定向爬取/API）
-
-tests/                       # 【新增】单元测试目录
-├── __init__.py
-├── test_search_clients.py   # 【新增】覆盖GitHub/Interview/Bocha搜索客户端
-├── test_memory.py           # 【新增】覆盖AgentMemory CRUD
-├── test_critic_worker.py    # 【新增】覆盖CriticWorker审查逻辑
-└── test_output_formatter.py # 【新增】覆盖双轨输出格式化
-
-research_output/             # 【保留】示例输出目录
-├── .gitkeep
-
-requirements.txt             # 【修改】更新依赖清单
-.env.example                 # 【修改/新增】增加GitHub Token、面经API等环境变量模板
-Dockerfile                   # 【新增】容器化部署
-run.sh                       # 【新增】一键运行脚本
+AI-Agent-deepresearch4careertransition/
+├── frontend/                # 【新增】前端UI（暖橙活力风）
+│   ├── index.html           # 入口跳转页
+│   ├── colors_and_type-warm-energetic.css  # 品牌配色
+│   ├── assets/
+│   │   ├── common.css       # 通用动效+响应式
+│   │   └── *.jpg            # 定制插画素材
+│   └── pages/
+│       ├── index-warm-energetic.html  # 首页（落地页）
+│       ├── input.html                 # 需求输入
+│       ├── generating.html            # 生成进度
+│       ├── workbench.html             # 报告工作台
+│       ├── history.html               # 历史记录
+│       └── settings.html              # 个人设置
+├── deep_research/            # 核心源代码包
+│   ├── __init__.py          # 【保留】包初始化
+│   ├── __main__.py          # 【保留】模块入口
+│   ├── api.py               # 【微调】FastAPI服务，增加用户画像相关字段
+│   ├── config.py            # 【修改】增加垂直搜索配置、AgentMemory配置、输出配置
+│   ├── main.py              # 【修改】DeepResearchAgent支持用户画像输入、三轨输出保存
+│   ├── orchestrator.py      # 【修改】增加结构化输出生成、CriticWorker集成、用户画像透传
+│   ├── output_formatter.py  # 【新增】将内部结构化数据渲染为 Markdown 报告 + JSON 文件
+│   ├── prompts.py           # 【修改】全面重构为面试语境（任务拆解、Worker、Critic、差距分析）
+│   ├── tools.py             # 【修改】增加搜索客户端注册机制、GitHub/面经结果格式化
+│   ├── user_profile.py      # 【新增】用户画像解析、验证、Pydantic模型
+│   ├── workers.py           # 【修改】删除VisualizationWorker，弱化AnalysisWorker，新增CriticWorker
+│   ├── memory.py            # 【新增】AgentMemory：SQLite本地持久化用户画像和历史记录
+│   └── search_clients/      # 【新增】垂直搜索客户端包
+│       ├── __init__.py      # 【新增】统一导出
+│       ├── base.py          # 【新增】搜索客户端抽象基类
+│       ├── bocha.py         # 【新增/迁移】Bocha通用搜索（从tools.py迁移并适配基类）
+│       ├── github.py        # 【新增】GitHub API项目搜索（stars/forks/语言/更新时间过滤）
+│       └── interview.py     # 【新增】面经站点搜索（牛客/力扣/知乎定向爬取/API）
+│
+├── tests/                    # 【新增】单元测试目录
+│   ├── __init__.py
+│   ├── test_search_clients.py
+│   ├── test_memory.py
+│   ├── test_critic_worker.py
+│   └── test_output_formatter.py
+│
+├── research_output/          # 【保留】示例输出目录
+│   └── .gitkeep
+│
+├── requirements.txt          # 【修改】更新依赖清单
+├── .env.example              # 【修改/新增】环境变量模板
+├── Dockerfile                # 【新增】容器化部署
+└── run.sh                    # 【新增】一键运行脚本
 ```
 
 ---
@@ -568,11 +582,15 @@ flowchart TD
 | Worker 搜索分析、Critic 审查 | 配置中的默认 `model`（如 qwen-plus / deepseek-v4-pro） | 平衡质量与成本 |
 | 用户画像提取、查询扩展、简单格式化 | 配置中的 `model_fast`（如 qwen-turbo / deepseek-v4-flash） | 低成本快速响应 |
 
-### 6.4 不引入的依赖（明确边界）
+### 6.4 前端技术选型
+
+- **前端实现**：✅ 已实现纯静态 HTML/CSS/JS 前端（位于 `frontend/` 目录），采用暖橙活力风设计，包含6个完整页面，支持响应式移动端适配和微交互动效。不依赖 React/Vue 等框架，通过 CSS 变量和 Lucide 图标 CDN 实现品牌一致性。
+- **前后端联调**：待完成。前端表单页需对接 FastAPI 的 `/research` 接口，生成进度页需对接 SSE 流式端点，工作台页需对接报告获取接口。
+
+### 6.5 不引入的后端依赖（明确边界）
 
 - **LangChain / LlamaIndex**：当前场景不需要复杂的 Chain 编排或文档索引，自建 Orchestrator 已足够。
 - **向量数据库（如 chroma, faiss）**：RAG 层标记为"中优先级"但本次改造不做，AgentMemory 用 SQLite 即可满足。
-- **前端框架（如 React, Vue）**：明确不做前端界面，命令行 + FastAPI 演示足够。
 - **额外 LLM（GPT-4 / Claude）**：仅使用手头已有 API，控制成本。
 
 ---
